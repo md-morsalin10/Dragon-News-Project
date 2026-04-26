@@ -2,16 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import navLogo from "@/assets/user.png"
+import NavLink from './NavLink';
 
 const Navbar = () => {
     return (
         <div className='flex justify-between items-center container mx-auto py-5 px-4'>
             <div></div>
-            <ul className='flex justify-center items-center gap-2 text-gray-400'>
-                <li><Link href={"/"}>Home</Link></li>
-                <li><Link href={"about"}>About</Link></li>
-                <li><Link href={"carrier"}>Carrier</Link></li>
-            </ul>
+            <div>
+                <ul className='flex justify-center items-center gap-2 text-gray-400'>
+                    <li><NavLink href={"/"}>Home</NavLink></li>
+                    <li><NavLink href={"about"}>About</NavLink></li>
+                    <li><NavLink href={"carrier"}>Carrier</NavLink></li>
+                </ul>
+            </div>
             <div className='flex justify-center items-center gap-2'>
                 <Image
                     width={100}

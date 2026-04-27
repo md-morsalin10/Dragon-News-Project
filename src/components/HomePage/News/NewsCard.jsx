@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { CiShare2 } from 'react-icons/ci';
-import { FaBookmark } from 'react-icons/fa';
+import { FaBookmark, FaEye } from 'react-icons/fa';
+import { IoMdStar } from 'react-icons/io';
 
 const NewsCard = ({ n }) => {
     return (
@@ -37,8 +39,17 @@ const NewsCard = ({ n }) => {
                         height={600}
                         alt="News" />
                 </figure>
+                <div className='py-3'>
+                    <p className='text-sm text-gray-600 line-clamp-3'>{n.details}</p>
+                </div>
                 <div>
-                    <p className='text-sm text-gray-600'>{n.details}</p>
+                    <Link href={`/news/${n._id}`}>
+                     <button className='btn'>See Details</button>
+                    </Link>
+                </div>
+                <div className='flex justify-between items-center py-4'>
+                    <p className='flex justify-center items-center gap-0.5'><IoMdStar className='text-amber-400' />{n.rating.number}</p>
+                    <p className='flex justify-center items-center text-gray-500 gap-0.5'><FaEye />{n.total_view}</p>
                 </div>
             </div>
         </div>

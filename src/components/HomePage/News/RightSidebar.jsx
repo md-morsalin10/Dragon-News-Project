@@ -7,10 +7,18 @@ const RightSidebar = () => {
         const data = await authClient.signIn.social({
             provider: "google",
         });
-        
-        console.log(data, "data");
-        
+
+        // console.log(data, "data")
     }
+
+    const handleGithubSigIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        })
+
+        console.log(data, "data")
+    }
+
     return (
         <div>
             <div className='flex flex-col justify-center gap-2'>
@@ -20,7 +28,9 @@ const RightSidebar = () => {
                     className='btn border border-blue-500 text-blue-500'>
                     <FaGoogle />
                     Login With Google</button>
-                <button className='btn border border-gray-600 text-gray-600'>
+                <button
+                    onClick={handleGithubSigIn}
+                    className='btn border border-gray-600 text-gray-600'>
                     <FaGithub />
                     Login With Github</button>
             </div>

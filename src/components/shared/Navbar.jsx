@@ -1,6 +1,5 @@
 "use client"
 import Image from 'next/image';
-import React from 'react';
 import navLogo from "@/assets/user.png"
 import NavLink from './NavLink';
 import Link from 'next/link';
@@ -9,6 +8,7 @@ import { authClient } from '@/lib/auth-client';
 
 const Navbar = () => {
     const { data: session, isPending } = authClient.useSession();
+   
 
     const user = session?.user;
     console.log(user, "navbar");

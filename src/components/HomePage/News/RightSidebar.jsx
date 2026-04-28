@@ -1,11 +1,23 @@
+"use client"
+import { authClient } from '@/lib/auth-client';
 import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const RightSidebar = () => {
+    const handleGoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+        
+        console.log(data, "data");
+        
+    }
     return (
         <div>
             <div className='flex flex-col justify-center gap-2'>
                 <h2 className='text-xl font-semibold text-gray-600'>Login With</h2>
-                <button className='btn border border-blue-500 text-blue-500'>
+                <button
+                    onClick={handleGoogleSignIn}
+                    className='btn border border-blue-500 text-blue-500'>
                     <FaGoogle />
                     Login With Google</button>
                 <button className='btn border border-gray-600 text-gray-600'>

@@ -1,10 +1,12 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const RegisterPage = () => {
+    const [showPass, setShowPass] = useState(false)
     const {
         register,
         handleSubmit,
@@ -17,23 +19,23 @@ const RegisterPage = () => {
     const onRegister = async (data) => {
         console.log(data);
 
-        const {name, email, password, photo}=data
+        const { name, email, password, photo } = data
 
-        const { data:res, error } = await authClient.signUp.email({
-            name: name, 
+        const { data: res, error } = await authClient.signUp.email({
+            name: name,
             email: email,
-            password: password, 
+            password: password,
             image: photo,
             callbackURL: "/",
         });
         console.log(res, error);
-        if(error){
+        if (error) {
             alert(error.message)
         }
-        if(res){
+        if (res) {
             alert("SignUp Successful")
         }
-        
+
     }
 
 
@@ -78,10 +80,13 @@ const RegisterPage = () => {
                         <input
                             {...register("password",
                                 { required: "Password Filed is Required" })}
-                            type="password"
+                            type={showPass? "text":"password"}
                             className="input w-full"
                             placeholder="Enter Your Password" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                        <span
+                            onClick={() => setShowPass(!showPass)}
+                            className='relative  -top-8 left-84'>{showPass? <FaEye size={15}/> : <FaEyeSlash size={15}/>}</span>
                     </fieldset>
                     <button className='btn w-full bg-slate-900 my-4 text-white'>Login</button>
                 </form>

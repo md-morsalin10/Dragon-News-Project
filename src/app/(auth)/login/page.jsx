@@ -1,10 +1,13 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { BsEye } from 'react-icons/bs';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
+     const [showPass, setShowPass] = useState(false)
     const {
         register,
         handleSubmit,
@@ -46,15 +49,18 @@ const LoginPage = () => {
                             placeholder="Enter Your Email" />
                         {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
                     </fieldset>
-                    <fieldset className="fieldset">
+                    <fieldset className="fieldset relative">
                         <legend className="fieldset-legend">Password</legend>
                         <input
                             {...register("password",
                                 { required: "Password Filed is Required" })}
-                            type="password"
+                            type={showPass ? 'text':"password"}
                             className="input w-full"
                             placeholder="Enter Your Password" />
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+                        <span 
+                        onClick={()=> setShowPass(!showPass)}
+                        className='relative  -top-8 left-84'>{showPass? <FaEye size={15}/> : <FaEyeSlash size={15}/>}</span>
                     </fieldset>
                     <button className='btn w-full bg-slate-900 my-4 text-white'>Login</button>
                 </form>

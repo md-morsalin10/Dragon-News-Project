@@ -13,8 +13,7 @@ export async function proxy(request) {
     return NextResponse.redirect(new URL('/login', request.url))
 }
 
-// Alternatively, you can use a default export:
-// export default function proxy(request) { ... }
+
 
 export const config = {
     matcher: ['/carrier',"/news/:path*"]

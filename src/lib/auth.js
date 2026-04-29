@@ -6,24 +6,24 @@ const client = new MongoClient(process.env.MONGO_URI);
 const db = client.db("dragon-news");
 
 export const auth = betterAuth({
-    emailAndPassword: {
-        enabled: true,
-    },
+
     database: mongodbAdapter(db, {
         // Optional: if you don't provide a client, database transactions won't be enabled.
         client
     }),
-     socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-        }, 
+    emailAndPassword: {
+        enabled: true,
     },
-     socialProviders: {
-        github: { 
-            clientId: process.env.GITHUB_CLIENT_ID, 
-            clientSecret: process.env.GITHUB_CLIENT_SECRET, 
-        }, 
-    },
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        },
+           github: {
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        }
+    }
+   
 
 });

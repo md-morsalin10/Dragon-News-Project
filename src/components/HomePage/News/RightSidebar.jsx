@@ -5,10 +5,10 @@ import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-ic
 const RightSidebar = () => {
     const handleGoogleSignIn = async () => {
         const data = await authClient.signIn.social({
-            provider: "google",
+            provider: "google"
         });
 
-        // console.log(data, "data")
+        console.log(data, "data")
     }
 
     const handleGithubSigIn = async () => {
